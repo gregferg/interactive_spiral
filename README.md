@@ -4,7 +4,7 @@
 
 [github-pages]: http://gregferg.github.io/interactive_spiral/
 
-![circle_spiral](./readme_photos/circle_spiral2.png)
+![circle_spiral](./readme_photos/circle_spiral.png)
 
 The Interactive Spiral creates a circular spiral from the mouse position to the center of the screen.
 
