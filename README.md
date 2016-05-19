@@ -19,6 +19,73 @@ Given the mouse position and center of the browser window, the algorithm calcula
 
 The starting radius, ratio of radius reduction between points, number of circles drawn, angles between each circle, and rate of collapse towards the center can all be changed for a different visual effect.
 
+##### Code
+
+```javascript
+CurlyDepthLine.prototype.draw = function() {
+  var vec = Util.scale(
+    [this.start[0],
+    this.start[1]],
+    1
+  );
+  var startingPos = vec;
+  var startingAngle = this.startingAngle;
+  var startingRadius = 12;
+  var radius = this.radius;
+  var rateOfCollapse = .9;
+
+  for (var i = 0; i < 25; i++) {
+    startingAngle = this.nextAngle(startingAngle);
+    startingPos = this.nextPoint(radius, startingAngle);
+    radius = collapseRateRadius(radius);
+    rateOfCollapse = collapseRate(rateOfCollapse);
+    startingRadius = collapseRateSizeRadius(startingRadius);
+
+    this.drawNode(startingPos, startingRadius);
+  }
+};
+
+
+CurlyDepthLine.prototype.calculateStartingAngle = function(start, end) {
+  return Math.atan((start[1] - end[1]) / (start[0] - end[0]));
+};
+
+CurlyDepthLine.prototype.nextAngle = function(prevAngle) {
+  return prevAngle + Math.PI / 12;
+};
+
+
+CurlyDepthLine.prototype.nextPoint = function(prevRadius, prevAngle) {
+  // Since cos and sin can only return positive given some inputs,
+  // this checks to see if the point needs to be mirrored to negative or not
+  // so that the next circles are not reflected
+  var mirror = 1;
+
+  if (this.start[0] - this.end[0] < 0) {
+    mirror = -1;
+  }
+
+  return [
+    this.end[0] + prevRadius * Math.cos(prevAngle) * mirror,
+    this.end[1] + prevRadius * Math.sin(prevAngle) * mirror
+  ];
+};
+
+
+CurlyDepthLine.prototype.drawNode = function(pos, radius) {
+  var ctx = this.ctx;
+
+  ctx.beginPath();
+  ctx.moveTo(pos[0], pos[1]);
+  ctx.arc(
+    pos[0], pos[1], radius, 0, 2 * Math.PI, true
+  );
+  ctx.fill();
+
+};
+
+```
+
 
 #### Floating Effect
 
@@ -27,7 +94,7 @@ To make the visual effect more interesting, an addition layer of complexity was 
 
 #### Change Rate of Collapse
 
-The action of clicking toggles the rate of collapse of circles towards the center addinging another element of interactivity
+The action of clicking toggles the rate of collapse of circles towards the center adding another element of interactivity
 
 
 ###### Future Features
