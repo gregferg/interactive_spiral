@@ -8,8 +8,6 @@
 
 The Interactive Spiral creates a circular spiral from the mouse position to the center of the screen.
 
---Coming Soon-- Change the algorithm to result in different visuals
-
 ###Features
 
 #### Spiral Algorithm
