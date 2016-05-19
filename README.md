@@ -25,3 +25,15 @@ The starting radius, ratio of radius reduction between points, number of circles
 #### Floating Effect
 
 To make the visual effect more interesting, an addition layer of complexity was added to make the circle slow down exponentially as it approached the mouse's position. This induces an illusion similar to the slow freezing of time.
+
+
+#### Change Rate of Collapse
+
+The action of clicking toggles the rate of collapse of circles towards the center addinging another element of interactivity
+
+
+###### Future Features
+
+* Add slider bars to change the the rate of collapse, starting circle radius, number of spiral lines, etc
+* Add a revert to default button
+* Create transitions between states and editing of algorithm.
