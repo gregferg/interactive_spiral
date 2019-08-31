@@ -1,3 +1,5 @@
+--***Please note this application was made in 2016 and is not a current reflection of my skills***--
+
 ## Interactive Spiral
 
 [Github Pages link][github-pages] **NB:** Live Spiral!
